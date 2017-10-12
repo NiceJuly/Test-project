@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>点击图片显示大图</title>
+<style type="text/css">
+img {
+	padding: 5px;
+	width: 100px;
+	height: auto;
+}
+#outer {
+	width: 100%;
+	height: 100%;
+}
+.overlay {
+	background-color: #000;
+	opacity: .9;
+	filter: alpha(opacity=90);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	text-align:center;
+}
+.overlayimg {
+	width:35%;
+	height:100%;
+}
+</style>
+<script type="text/javascript" language="javascript">  
+function expandPhoto(){  
+    var overlay = document.createElement("div");  
+    overlay.setAttribute("id","overlay");  
+    overlay.setAttribute("class","overlay");  
+    document.body.appendChild(overlay);  
+  
+    var img = document.createElement("img");  
+    img.setAttribute("class","overlayimg");  
+    img.src = this.getAttribute("src");  
+    document.getElementById("overlay").appendChild(img);  
+  
+    img.onclick = restore;  
+}  
+function restore(){  
+    document.body.removeChild(document.getElementById("overlay"));  
+    document.body.removeChild(document.getElementById("img"));  
+}  
+window.onload = function(){  
+    var imgs = document.getElementsByTagName("img");  
+    imgs[0].focus();  
+    for(var i = 0;i<imgs.length;i++){  
+        imgs[i].onclick = expandPhoto;  
+        imgs[i].onkeydown = expandPhoto;  
+    }  
+  
+}  
+</script>
+</head>
+<div id = "outer">
+  <p>点击图片放大</p>
+  <img src="http://e.hiphotos.baidu.com/image/pic/item/77094b36acaf2edde7684cc38e1001e93901937a.jpg" /><img src="http://e.hiphotos.baidu.com/image/pic/item/77094b36acaf2edde7684cc38e1001e93901937a.jpg" /></div>
+<body>
+</body>
+</html>
